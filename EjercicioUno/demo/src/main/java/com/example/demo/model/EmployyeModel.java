@@ -1,4 +1,4 @@
 package com.example.demo.model;
 
-public class Employye {
+public class EmployyeModel {
 }
