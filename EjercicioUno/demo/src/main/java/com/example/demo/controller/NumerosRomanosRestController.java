@@ -10,6 +10,7 @@ import java.util.Map;
 @RestController
 public class NumerosRomanosRestController {
 
+    //ResolucionGasty
     @GetMapping("numero/Romano/{numero}")
     public String getNumeroRomano(@PathVariable Integer numero){
         if (numero > 3999)
@@ -141,9 +142,39 @@ public class NumerosRomanosRestController {
         return "El numero " + num + " en romano es: " + rom;
     };
 
+    //Resolucion profeVariante (ajustar)
+    @GetMapping("numero/Romano2/{numero}")
+        public String getNumero2(@PathVariable Integer numero){
 
+        int numeroOriginal = numero;
+        StringBuilder numeroRomano = new StringBuilder();
 
+        int numeros[] = new int[]{1000,900,500,400,100,90,50,40,10, 9, 5, 4, 1};
+        String[] numerosRomanos = new String[]{"M","CM","D","CD","C","XC","L","XL", "X", "IX", "V", "IV", "I"};
 
+        //Va restando y va creando el numero remano
+        for (int i = 0;i < numeros.length; i++){
+            while (numero >= numeros[i]){
+                numero -= numeros[1];
+                numeroRomano.append(numerosRomanos[i]);
+            }
+        };
 
+        return "El numero " + numeroOriginal + " en romano es : " + numeroRomano.toString();
+    }
+
+    //Resolucion Profes
+    @GetMapping("numero/Romano3/{number}")
+    public String toRoman(@PathVariable Integer number) {
+        StringBuilder romanNumber = new StringBuilder();
+        int[] numbersToCompare = {1000,900,500,400,100,90,50,40,10, 9, 5, 4, 1};
+        String[] romanNumbers = {"M","CM","D","CD","C","XC","L","XL", "X", "IX", "V", "IV", "I"};
+
+        for (int i = 0; i < numbersToCompare.length; i++)
+            for (;number >= numbersToCompare[i]; number -= numbersToCompare[i])
+                romanNumber.append(romanNumbers[i]);
+
+        return romanNumber.toString();
+    }
 
 };
